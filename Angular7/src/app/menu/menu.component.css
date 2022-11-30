@@ -1,0 +1,42 @@
+
+/* Este es para los elementos en general */
+.navbar-light {
+color: white;
+}
+.negro {
+  color: black;
+  font-size: 33px;
+}
+.nav-item .nav-link{
+  color: white;
+  font-size: 25px;
+}
+.dropdown-menu{
+  font-size: 20px;
+}
+.dropdown-item{
+  color: blue;
+}
+.nav-item .nav-link:hover{
+  color: blue;
+}
+.blan:hover{
+  color: white;
+}
+/*  Este es para el elemento activo  */
+.nav-item  .active{
+  color: rgb(12, 77, 12);
+ }
+.nav-item .active:hover{
+ color: green;
+}
+.hh{
+  height: 50px;
+  padding: 1rem;
+  margin: 10 auto;
+  text-align: center;
+  align-self: center;
+}
+.cc{
+  align-self: center;
+}

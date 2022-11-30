@@ -1,0 +1,22 @@
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Padre con 2 hijos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">ViewChildren-Pasar Padre=>Hijos</li>
+  </ol>
+</nav>
+<p>padre-children works!</p>
+
+<button (click)="agregar()">Agregar </button>
+<button (click)="remover()">Remover </button>
+<button (click)="voltearColores()">Voltear Colores</button>
+<br> <br>
+
+<select #selComponentes [(ngModel)]="sel">
+  <option *ngFor= "let option of arr; let index=index" [value]="index">Componente {{ index + 1}} </option>
+</select>
+<button (click)="voltearColor(sel)">Voltear Color</button>
+
+<app-hijo-children *ngFor = "let i of arr"></app-hijo-children>

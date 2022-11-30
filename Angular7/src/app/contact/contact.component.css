@@ -1,0 +1,25 @@
+
+/* Este es para los elementos en general */
+.navbar-light {
+  color: white;
+  }
+  .navbar-brand negro {
+    color: black;
+    font-weight: 900;
+  }
+  .nav-item .nav-link{
+    color: white;
+  }
+  .nav-item .nav-link:hover{
+    color: blue;
+  }
+  .blan:hover{
+    color: white;
+  }
+  /*  Este es para el elemento activo  */
+  .nav-item  .active{
+    color: rgb(12, 77, 12);
+   }
+  .nav-item .active:hover{
+   color: green;
+  }

@@ -1,0 +1,76 @@
+<p>http-patch-demo works!</p>
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">HttpPatchDemo</li>
+  </ol>
+</nav>
+{{Msg}}
+<strong>Navegación RUTAS:</strong>
+<button (click)="irAList()"> List </button>
+
+<div class="container">
+  <ng-container *ngIf="arr">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ID-REGISTRO</th>
+          <th>TITLE</th>
+          <th>DESCRIPTION</th>
+          <th>DONE</th>
+          <th>CREATE-DATE</th>
+          <th>UPDATED-DATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of arr">
+          <td><a style="cursor: pointer;" class="btn btn-primary" (click)="selReg(e)">Select</a></td>
+          <td>{{e.id}}</td>
+          <td>{{e.title}}</td>
+          <td>{{e.descripcion}}</td>
+          <td>{{e.done}}</td>
+          <td>{{e.createdDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{e.updatedDate | date:'dd-MM-yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <hr>
+  <form (ngSubmit)="onSubmit()" *ngIf="model">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" class="form-control" required [(ngModel)]="model.title" placeholder="Insert a title" >
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripcion</label>
+      <input type="textarea" name="descripcion" id="descripcion" class="form-control" [(ngModel)]="model.descripcion" placeholder="Insert a descripcion" >
+    </div>
+    <div class="form-group">
+      <label for="done">Done</label>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="checkbox"  name="done" id="done" class="form-check-input" [(ngModel)]="model.done" >
+    </div>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-success">Submit PATCH</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button *ngIf="model" (click)="put()" class="btn btn-primary"> Put</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button *ngIf="model" (click)="delete()" class="btn btn-danger"> Delete</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong style="color:rgb(8, 173, 49);" *ngIf = "!Err">{{Msg}}</strong>
+    <strong style="color:red;" *ngIf="Err">{{Msg}}</strong>
+  </form>
+</div>
+<!-- type = "ball-scale-multiple" color = "#fff -->
+<ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "blue"
+  type = "ball-scale-ripple-multiple"   [fullScreen] = "true" [show]="loading" >
+  <div  class=" carga" style="width: 3rem; height: 3rem;" role="status"   >
+    <!-- <span class="sr-only">Loading...</span> -->
+  </div>
+  <br>
+  <br>
+  <br>
+  <p style="color: white" >Loading Array DB... </p></ngx-spinner>

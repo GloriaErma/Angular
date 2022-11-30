@@ -1,0 +1,11 @@
+.container-main{
+  margin: 0 5px 5px 0;
+  width: 300px;
+  background-color: wheat;
+}
+.container-enviado{
+  text-align: center;
+}
+.ocultar{
+  display:none;
+}

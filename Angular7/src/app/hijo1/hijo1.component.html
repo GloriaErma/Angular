@@ -1,0 +1,11 @@
+<strong>hijo1 works! </strong>
+<br>
+Escribe hijo1:
+
+<input type="text" [(ngModel)]="paraHijo2"
+ (input)= "cambioTexto(paraHijo2)">
+
+<!-- NO funciona:  <input type="text" (input)= "cambioTexto($event.target.value)"> -->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<hr width=70% size=20  color="#FF0000" noshade="noshade" align="left" >
+<app-nieto1></app-nieto1>

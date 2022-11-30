@@ -1,0 +1,42 @@
+<p>grilla-edit works!</p>
+
+<div class="example-wrapper">
+  <div
+    style="margin-bottom: 5px; display: flex; justify-content: space-between;"
+  >
+    <div>
+      <!-- <button (click)="onBtStartEditing()">edit (0)</button>
+      <button (click)="onBtStartEditing(46)">edit (0, Delete)</button>
+      <button (click)="onBtStartEditing(null, 'T')">edit (0, 'T')</button> -->
+      <button (click)="onBtStartEditing(null, null, 'top')">
+        edit (0, Top)
+      </button>
+      <button (click)="onBtStartEditing(null, null, 'bottom')">
+        edit (0, Bottom)
+      </button>
+    </div>
+    <div>
+      <button (click)="onBtStopEditing()">stop ()</button>
+      <button (click)="onBtNextCell()">next ()</button>
+      <button (click)="onBtPreviousCell()">previous ()</button>
+    </div>
+    <div>
+      <button (click)="onBtWhich()">which ()</button>
+    </div>
+  </div>
+  <div class="grid-wrapper">
+    <ag-grid-angular
+      #agGrid
+      style="width: 100%; height: 100%;"
+      id="myGrid"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [pinnedTopRowData]="pinnedTopRowData"
+      [pinnedBottomRowData]="pinnedBottomRowData"
+      (gridReady)="onGridReady($event)"
+    ></ag-grid-angular>
+  </div>
+</div>
+<!--  -->

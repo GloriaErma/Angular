@@ -1,0 +1,43 @@
+<section id="main-content" style="background-color: white;">
+    <div class="container pt-5 mt-5">
+        <div class="row" *ngIf="productos">
+            <div class="col-md-10 mx-auto">
+                <h2 class="my-3 py-3">Mis Productos</h2>
+
+
+                <div class="row" *ngIf="productos">
+                    <div *ngFor="let producto of productos">
+                        <div class="col-md-6 text-center">
+                            <button type="submit" title="{{producto.sublineaCredito}}" class="btn btn-round btn-high">{{producto.sublineaCredito | slice:0:8}}</button>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="productos.length == 0">
+                        <h2 class="my-3 py-3">Actualmente no cuenta con productos adquiridos con el ICETEX</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5" style="padding: 158px;">
+            <div class="col-md-10 mx-auto">
+
+
+
+                <h2 class="my-3 py-3"></h2>
+
+                <div class="row">
+                    <div class="col-md-4 mx-auto text-center">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+
+
+
+
+
+    </div>
+
+</section>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>

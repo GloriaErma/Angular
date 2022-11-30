@@ -1,0 +1,22 @@
+<p>boton-panico works!</p>
+
+<div class="container-main">
+  <ng-container *ngIf="!enviado">
+    <div>
+      <form action="">
+        <div class="form-group">
+          <label for="panic-area">Que te duele??</label>
+          <textarea name="" id="panic-area" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+        <button class="btn btn-danger"  (click)="enviado=true">Ayuda!</button>
+        <button type="button" class="btn btn-default" (click)="cerrar()">Cancelar</button>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="enviado">
+    <div class="container-enviado">
+      <p>la ayuda va en camino!</p>
+      <button type="button" class="btn btn-primary"  (click)="cerrar()">Gracias</button>
+    </div>
+  </ng-container>
+</div>

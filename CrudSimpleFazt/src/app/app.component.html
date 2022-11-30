@@ -1,0 +1,57 @@
+<nav class="navbar nabar-dark bg-primary">
+  <a class="navbar-brand"  href="/">
+    ANGULAR CRUD FAZT</a>
+</nav>
+<!-- uiGradients class bodi{} en stiles.css-->
+<!-- .container .row  .col-md-8  .col-md-4 md=medio de hasta 12 columnas, sm,lg,xl-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+      <ul class="list-group">
+        <li *ngFor="let e of emplArray"
+            class="list-group-item list-group-item-action"
+            (click)="openEdit(e)"
+            [class.active] = "e == sel"
+            >
+
+            <!-- <span class="badge badge-light">{{e.id}}</span> -->
+            <span class="badge LabelNum" >{{e.id}}</span>
+             {{e.name}} - {{e.country}}
+        </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            Insert a new Employee
+          </div>
+          <div class="form-group">
+            <!-- debe incluir  en app.module  FormsModule para utilizar [(ngModel)]= -->
+            <input type="text" #name (keyup)="0" [(ngModel)]="sel.name" placeholder="Insert a name"
+                   class="form-control" style="margin-bottom: 10px;">
+                   {{name.value}}
+          </div>
+
+          <div class="form-group">
+            <!-- debe incluir  en app.module  FormsModule para utilizar [(ngModel)]= -->
+            <input type="text" [(ngModel)]="sel.country" placeholder="Insert a country" class="form-control">
+          </div>
+          <button (click)="AddEdit()" class="btn btn-primary" style="margin: 10px;"> Submit</button>
+          <button *ngIf="sel.id!==0" (click)="delete()" class="btn btn-danger"> Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="toolbar" role="banner">
+        <img
+          width="55"
+          alt="Angular Logo"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

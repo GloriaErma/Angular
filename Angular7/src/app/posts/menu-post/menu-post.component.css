@@ -1,0 +1,9 @@
+.pull-right {
+  width: 100%;
+  text-align: right;
+}
+.negro {
+  color: black;
+  font-size: 33px;
+  background-color: #0275d8
+}

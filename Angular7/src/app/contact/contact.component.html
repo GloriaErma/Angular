@@ -1,0 +1,23 @@
+<p>contact works!</p>
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Contacto</li>
+  </ol>
+</nav>
+
+<h1>Hello, Contacto Padre!</h1>
+<h3>Comunicación de Contacto Padre con Contacto Hijo</h3>
+<!-- //Asigna valor del contenido del textbox -->
+<!--  NO funciono: <input (input)="textoPadre = $event.target.value"> -->
+<!-- <input type="text" [(ngModel)]="textoPadre"/> -->
+<!-- <app-contact-hijo [textoHijo]="textoPadre" ></app-contact-hijo> -->
+
+<span> Mensaje enviando  desde el hijo hacia el Padre {{textoPadre1}}  </span>
+
+<!-- <app-contact-hijo (enviar)="recibirMensaje($event) " ></app-contact-hijo>  SE reutiliza mismo EVENTO X-->
+
+<app-contact-hijo (enviar)="recibirMensaje($event)" (MAy)="recibirMensaje($event)" ></app-contact-hijo>
+

@@ -1,0 +1,70 @@
+<p>form-uno works!</p>
+
+<div class="modal-header bg-primary navbar-light "  >
+  <h4 class="modal-title blanc">Formulario Registro Particular </h4>
+   <!-- <button (click)="modalClose()" type="button" class="close"  data-dismiss="modal" aria-label="Close"> -->
+  <!-- <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')" > -->
+  <button type="button" class="close" aria-label="Close" (click)="close()" >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <br>
+  <div class="form-group">
+    <input type="number" #Id  value="0" step="1"  min="1" pattern="^[0-9]+" >
+    <!-- [disabled]="!todo"  -->
+    <button (click)= "getUno(Id.value)" class="btn btn-primary">Get Id Registro</button>
+  </div>
+  <br>
+  <br>
+  <!-- (ngSubmit)="onSubmit(todoForm.value -->
+  <form [formGroup]="todoForm"  class="" >
+    <div class="form-group">
+      <label for="title" style="width: 150px" >Title*        </label>
+      <input type="text" id="title" placeholder="Title" class="form-Control" formControlName="title"/>
+      <br>
+      <span style="color:red;" *ngIf="todoForm.controls['title'].touched && todoForm.controls['title'].errors?.required">Title is required.</span>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="descripcion" style="width: 150px" >Description*   </label>
+      <textarea id="descripcion" style="width: 250px"  placeholder="Descripcion" class="form-Control" formControlName="descripcion" ></textarea>
+      <br>
+    <span style="color:rgb(248, 8, 8);" *ngIf="todoForm.controls['descripcion'].touched && todoForm.controls['descripcion'].errors?.required">Description is required.</span>
+    </div>
+    <br>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="done" formControlName="done">
+      <label class="form-check-label" for="done" style="width: 100px" >Done</label>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <strong style="color:rgb(8, 173, 49);" *ngIf = "!Err">{{Msg}}</strong>
+  <strong style="color:red;" *ngIf="Err">{{Msg}}</strong>
+  <!-- <button type="submit" class="btn btn-success">Submit</button> -->
+  <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Close click')">Close</button> -->
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+  <button class ="btn btn-primary" (click)="onSubmit()" [disabled]="todoForm.invalid">Save</button>
+</div>
+<!--
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> -->
+<!--
+<script>
+  window.onload = function(){
+   var contenedor = document.getElementById('contenedor_carga');
+   contenedor.style.visibility = 'hidden';
+   contenedor.style.opacity = '0';
+ }
+</script> -->
+<!-- type = "ball-scale-multiple" color = "#fff -->
+<ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "blue"
+  type = "ball-scale-ripple-multiple"   [fullScreen] = "true" [show]="loading" >
+  <div  class=" carga" style="width: 3rem; height: 3rem;" role="status"   >
+    <!-- <span class="sr-only">Loading...</span> -->
+  </div>
+  <br>
+  <br>
+  <br>
+  <p style="color: white" >Loading Record DB... </p></ngx-spinner>

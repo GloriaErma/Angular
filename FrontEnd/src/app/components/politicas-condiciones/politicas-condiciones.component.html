@@ -1,0 +1,118 @@
+<section id="main-content">
+    <!-- GECS  segun diseñador Carlos Reyes 2-Dic-2020 -->
+    <!-- <app-header-inicio></app-header-inicio> -->      
+    <app-header-logo></app-header-logo>
+    <div class="col-md-10 mx-auto mb-3">
+        <h2>{{ tituloModulo }}</h2>
+    </div>
+    <form [formGroup]="checkForm" method="POST">
+        <div class="row" *ngIf="terminosVisibles">
+            <!-- GECS <div class="col-md-7 mx-auto"> -->
+            <div class="centrar-titulo">
+                <h3 class="my-3 py-3" style="font-size: 25px; text-align: left;">Políticas de Privacidad y Condiciones de Uso</h3>
+                <div class="row">
+                    <div class="col-md-12 mx-auto" style="font-size: 14px; text-align: left; line-height: 0.5!important;">
+                        <p>Es interés del El Instituto Colombiano de Crédito Educativo y Estudios Técnicos en el Exterior Mariano</p>
+                        <p>Ospina Pérez – ICETEX la salvaguardia de la privacidad de la información personal del Usuario obtenida a</p>
+                        <p>través del Sitio Web, para lo cual se compromete a adoptar una política de confidencialidad de acuerdo con</p>
+                        <p>lo que se establece a continuación:</p>
+                        <p>El Usuario reconoce que el ingreso de información personal, lo realiza de manera voluntaria y ante la</p>
+                        <p>solicitud de requerimientos específicos por el ICETEX para realizar un trámite, presentar una queja o</p>
+                        <p>reclamo, o para acceder a los mecanismos interactivos.</p>
+                        <p>El Usuario acepta que, a través del registro en el Sitio Web, el ICETEX recoge datos personales, los cuales</p>
+                        <p>no se cederán a terceros sin su conocimiento.</p>
+                        <p>La recolección y tratamiento automatizado de los datos personales, como consecuencia de la navegación</p>
+                        <p>y/o registro por el Sitio Web tiene como finalidades las detalladas a continuación:</p>
+                        <p>1. La adecuada gestión y administración de los servicios ofrecidos en el Sitio Web, en los que el Usuario</p>
+                        <p>decida darse de alta, utilizar o contratar</p>
+                        <p>2. El estudio cuantitativo y cualitativo de las visitas y de la utilización de los servicios por parte de los</p>
+                        <p>usuarios</p>
+                        <p>3. El envío por medios tradicionales y electrónicos de información relacionados con el ICETEX y de cualquier</p>
+                        <p>otro proyecto como sus programas</p>
+                        <!-- GECS  segun diseñador Carlos Reyes 2-Dic-2020 -->
+                        <!-- <a href="https://portal.icetex.gov.co/Portal/Home/atencion-al-ciudadano/politica-de-tratamiento-de-datos-personales-ICETEX">POLÍTICAS DE TRATAMIENTO DE DATOS PERSONALES</a> -->
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12 mx-auto" style="text-align: left;"> 
+                        <!-- GECS políticas debe hacerlo en una nueva pestaña para que el usuario no pierda la página de base. segun diseñador Carlos Reyes 2-Dic-2020 -->
+                        <a href="https://portal.icetex.gov.co/Portal/Home/atencion-al-ciudadano/politica-de-tratamiento-de-datos-personales-ICETEX" target="_blank" class="btn btn-low">POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES</a>
+                    </div>
+                </div>    
+                <br />
+                <div class="row">
+                    <div class="col-md-12 mx-auto" style="text-align: left;"> 
+                        <label class="checkbox-govco">
+                                <input type="checkbox" id="chkAceptaTerminos" formControlName="chkAceptacion" style="display:inline-block; vertical-align:middle">                        
+                                &nbsp;
+                                <span style="display:inline-block; vertical-align:middle">
+                                    <!-- GECS Pantalla Políticas “Acepto los términos y condiciones…” debe estar más grande (x-small).Según plantilla elementos formulario entregado por diseñador Carlos Reyes 2-Dic-2020 -->
+                                    <label for="chkAceptaTerminos" style="font-size:14px; font-family: sans-serif" >He leido y estoy de acuerdo con los términos y condiciones como de la<br />
+                                    política de tratamiento de la información</label>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row text-danger" div *ngIf="checkSubmitted && checkForm.controls.chkAceptacion.errors">
+                    <div class="col-md-12 mx-auto">
+                        <br />
+                        <div *ngIf="checkForm.controls.chkAceptacion.errors.required">* Debe aceptar los términos y condiciones</div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="row">
+                    <div class="col-md-6 mx-auto" style="align-items: center;">
+                        <button type="button" class="btn btn-round btn-middle btn-outline-primary" (click)="Volver()">Cancelar</button>
+                        <button type="button" class="btn btn-round btn-high" (click)="checkAceptarTerminos()">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row" *ngIf="esConfirmarUsuario">
+        <div class="container-fluid">
+            <div class="page-inner mb-5">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- GECS recargar pagina, segun diseñador Carlos Reyes 2-Dic-2020 -->
+                                <div *ngIf="errorConfirmacion" class="alert-wrong-govco alert alert-dismissible fade show" aria-label="Alerta: caso de error">
+                                    <button type="button" onclick="javascript:window.location.reload()" class="close" data-dismiss="alert" aria-label="Cerrar" title="Cerrar">×</button>
+                                    <div class="alert-heading">
+                                        <svg class="svg-inline--fa fa-times fa-w-11 icon-color-red fa-2x pr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+                                        <!-- <i class="fas fa-times icon-color-red fa-2x pr-2"></i> -->
+                                        <span class="headline-l-govco">Lo sentimos</span>
+                                    </div>
+                                    <div class="alert-content">
+                                        {{ mensajeError }}
+                                    </div>
+                                </div>
+                                <form [formGroup]="passForm" method="POST">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label for="txtPass">Ingrese la contraseña</label>
+                                            <input type="password" class="form-control input-govco" [ngClass]="{ 'is-invalid' : (passSubmitted && passForm.controls.pass.errors) || passNoCoinciden }" formControlName="pass" id="txtPass" placeholder="Contraseña">
+                                            <div *ngIf="passSubmitted && passForm.controls.pass.errors && passForm.controls.pass.errors.required" class="invalid-feedback">Campo Contraseña obligatorio</div>
+                                            <div *ngIf="passNoCoinciden" class="invalid-feedback">Los valores en los campos no coinciden</div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="txtConfirmPass">Confirmar contraseña</label>
+                                            <input type="password" class="form-control input-govco" [ngClass]="{ 'is-invalid' : (passSubmitted && passForm.controls.confirmPass.errors) || passNoCoinciden }" id="txtConfirmPass" formControlName="confirmPass" placeholder="Contraseña">
+                                            <div *ngIf="passSubmitted && passForm.controls.confirmPass.errors && passForm.controls.confirmPass.errors.required" class="invalid-feedback">Campo Confirmar Contraseña obligatorio</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center my-5">
+                                        <button type="button" (click)="checkPassword()" class="btn btn-round btn-high">Ingresar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer-general></app-footer-general>

@@ -1,0 +1,25 @@
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Padre con 2 hijos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Proyeccion Padre=>Hijos</li>
+  </ol>
+</nav>
+<h4>padre-proyeccion works!</h4>
+<app-hijo-proyeccion>hola</app-hijo-proyeccion>
+<br>
+<h4>Componente Padre Proyección</h4>
+<app-hijo-proyeccion> <button (click)="handleClick()">Mi botón</button>  </app-hijo-proyeccion>
+
+<app-hijo-proyeccion><app-proyectado></app-proyectado></app-hijo-proyeccion>
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<hr width=100% size=20  color="#FF0000" noshade="noshade" align="left" >
+
+<app-hijo-proyeccion>
+  <ng-container cabecera> <b> Esta es la cabecera </b>  </ng-container>
+  <ng-container cuerpo> <strong>Esta es la cuerpo </strong> </ng-container>
+  <ng-container pie> <b>Esta es la pie</b>  </ng-container>
+</app-hijo-proyeccion>
+

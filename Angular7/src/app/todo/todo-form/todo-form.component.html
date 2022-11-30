@@ -1,0 +1,103 @@
+<p><todo-form></todo-form> works!</p>
+
+<b>{{service.algo}} </b>
+Conexión Servicio <input type="checkbox" [checked]="checkService" >
+
+<div *ngIf="Msg">
+  {{ Msg }}
+</div>
+<div *ngIf="todo">
+   {{todo | json}}
+
+</div>
+<div *ngIf="Msg">
+  {{ Msg }}
+</div>
+
+
+<ng-container  *ngIf="array || todo">
+  ARRAY [[[[[]]]]]
+  <table>
+    <caption>Dinosaurios en el período Jurásico</caption>
+    <thead>
+      <tr>
+        <th>POS   </th>
+        <th>ID     </th>
+        <th>TITLE  </th>
+        <th>DESCRIPTION   </th>
+        <th>DONE   </th>
+        <th>CREATED-DATE  </th>
+        <th>UPDATED-DATE  </th>
+      </tr>
+    </thead>
+    <ng-container  *ngIf="todo ">
+      <Tbody>
+        <tr *ngFor="let item of todo ;let i=index">
+          <td> {{i+1}}
+          <td>{{item.title}}</td>
+          <td>{{item.descripcion}}</td>
+          <td>{{item.done}}</td>
+          <td>{{item.createdDate | date:'yyyy-MM-dd'}}</td>
+          <td>{{item.updatedDate | date:'yyyy-MM-dd'}}</td>
+        </tr>
+      </Tbody>
+    </ng-container>
+    <ng-container  *ngIf=" array">
+      <Tbody>
+        <tr *ngFor="let item of array ;let i=index">
+          <td> {{i+1}}
+          <td>{{item.id}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.descripcion}}</td>
+          <td>{{item.done}}</td>
+          <td>{{item.createdDate | date:'yyyy-MM-dd HH:mm:ss-SS' }}</td>
+          <td>{{item.updatedDate | date:'yyyy-MM-dd HH:mm:ss-SS'}}</td>
+        </tr>
+      </Tbody>
+    </ng-container>
+  </table>
+</ng-container>
+
+
+
+<div class="modal-header">
+  <h4 class="modal-title">Create Todo </h4>
+   <!-- <button (click)="modalClose()" type="button" class="close"  data-dismiss="modal" aria-label="Close"> -->
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')" >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="todoForm"  (ngSubmit)="saveTodo()" class="">
+    <div class="form-group">
+      <label for="title">Title*</label>
+      <br>
+      <input type="text" id="title" placeholder="Title" class="form-Control" formControlName="title"/>
+      <br>
+      <span style="color:red;" *ngIf="todoForm.controls['title'].touched && todoForm.controls['title'].errors?.required">Title is required.</span>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Description*</label>
+      <textarea id="descripcion" placeholder="Description" class="form-Control" formControlName="descripcion" ></textarea>
+     <span style="color:rgb(248, 8, 8);" *ngIf="todoForm.controls['descripcion'].touched && todoForm.controls['descripcion'].errors?.required">Description is required.</span>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="done" formControlName="done">
+      <label class="form-check-label" for="done">Done</label>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Close click')">Close</button>
+  <button class ="btn btn-primary" (click)="saveTodo()" [disabled]="todoForm.invalid">Save</button>
+</div>
+<!-- type = "ball-scale-multiple" color = "#fff -->
+<ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "blue"
+  type = "ball-scale-ripple-multiple"   [fullScreen] = "true" [show]="loading" >
+  <div  class=" carga" style="width: 3rem; height: 3rem;" role="status"   >
+    <span class="sr-only">Modal...</span>
+  </div>
+  <br>
+  <br>
+  <br>
+  <p style="color: white" >Loading Modal... </p></ngx-spinner>

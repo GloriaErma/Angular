@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angular7</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Ag-Grid  index.html Basic Example</title>
+  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+  <script src="main.js"></script>
+  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+</head>
+<body>
+  <app-root></app-root>
+  <!-- <div id="myGrid" style="height: 200px; width:500px;" class="ag-theme-alpine"></div> -->
+  <div id="myGrid" class="ag-theme-alpine" style="height: 600px; width:500px;"></div>
+
+  <script type="text/javascript" charset="utf-8">
+    // specify the columns
+    const columnDefs = [
+      { field: "make" },
+      { field: "model" },
+      { field: "price" }
+    ];
+
+    // specify the data
+    const rowData = [
+      { make: "Toyota", model: "Celica", price: 35000 },
+      { make: "Ford", model: "Mondeo", price: 32000 },
+      { make: "Porsche", model: "Boxter", price: 72000 }
+    ];
+
+    // let the grid know which columns and what data to use
+    const gridOptions = {
+      columnDefs: columnDefs,
+      rowData: rowData
+    };
+
+  // lookup the container we want the Grid to use
+  const eGridDiv = document.querySelector('#myGrid');
+
+  // create the grid passing in the div to use together with the columns & data we want to use
+  new agGrid.Grid(eGridDiv, gridOptions);
+
+  </script>
+</body>
+</html>

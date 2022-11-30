@@ -1,0 +1,145 @@
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-itema active " ><a href="#">Home    / </a></li>
+    <li class="breadcrumb-item " aria-current="page">Formulario Lista Registros API</li>
+    <!-- <li class="breadcrumb-item active" aria-current="page">Sección actual</li> -->
+  </ol>
+</nav>
+<button (click)="handleClick()">Recibiendo mensaje desde servicio--Click Me!!!</button>
+{{Msg}}
+
+<div class="container">
+  <ng-container  *ngIf=" array">
+    <h3>Lista arrays los registros </h3>
+    <caption>Dinosaurios en el período Jurásico</caption>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>POS   </th>
+          <th>ID-REGISTRO</th>
+          <th>TITLE</th>
+          <th>DESCRIPTION</th>
+          <th>DONE</th>
+          <th>CREATE-DATE</th>
+          <th>UPDATED-DATE</th>
+          <th>PRIMER-REGISTRO</th>
+          <th>ULTIMO-REGISTRO </th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th>Id. Proceso   </th>
+          <th>Id. Conexión</th>
+          <th>Llave Proceso</th>
+          <th>Despacho</th>
+          <th>Departamento</th>
+          <th>Sujetos Procesales</th>
+        </tr>
+      </thead>
+      <ng-container  *ngIf="array">
+        <Tbody>
+          <tr *ngFor="let item of array ;let i=index;
+          let primero = first; let ultimo = last; let impar = odd; let par = even"
+          [ngClass]="{'Class-Par':par, 'Class-Impar':impar }">
+            <td> {{i+1}} </td>
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.done}}</td>
+            <td>{{item.createdDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.updatedDate | date:'dd-MM-yyyy'}}</td>
+            <td> {{ primero }} </td>
+            <td> {{ ultimo }} </td>
+          </tr>
+        </Tbody>
+      </ng-container>
+    </table>
+  </ng-container>
+</div>
+
+<nav class="navbar nabar-dark bg-primary">
+  <a class="navbar-brand"  href="/">
+    ANGULAR CRUD FAZT</a>
+  <a class="navbar-brand"> {{toDay| date:' dd-MM-yyyy T HH:mm:ss'}}     </a>
+</nav>
+<!-- uiGradients class bodi{} en stiles.css-->
+<!-- .container .row  .col-md-8  .col-md-4 md=medio de hasta 12 columnas, sm,lg,xl-->
+<!--  efecto OVER class="list-group-item list-group-item-action" -->
+<!-- agregar sombra IDENTIFICA clase activo -->
+<div class="container body">
+  <div class="row">
+    <div class="col-md-8 mt-4 ">
+      <ul class="list-group">
+        <li *ngFor="let e of array"
+            class="list-group-item list-group-item-action"
+            (click)="openForEdit(e)"
+            [class.active] = "e == sel"
+            >
+              <span class="badge LabelNum" >{{e.id}}</span>
+              {{e.title}} - {{e.descripcion}} - {{e.createdDate| date:'dd-MM-yyyy'}} - {{e.updatedDate| date:'dd-MM-yyyy'}}
+
+              <span class="badge LabelNum" >{{e.done}}</span>
+        </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            <strong>Insert a new Record</strong>
+          </div>
+          <!-- directiva ngModel  > -->
+          <form [formGroup]="form" >
+            <div class="form-group" >
+              <input type="text" #name (keyup)="0" placeholder="Insert a title" name="title" formControlName="title" style="margin-bottom: 10px;" >
+                      {{name.value}}
+              <span style="color:red;" *ngIf="form.controls['title'].touched && form.controls['title'].errors?.required">Title is required.</span>
+            </div>
+            <div class="form-group">
+              <input type="textarea" placeholder="Insert a descripcion" class="form-control" formControlName="descripcion" style="margin-bottom: 10px;" >
+              <span style="color:red;" *ngIf="form.controls['descripcion'].touched && form.controls['descripcion'].errors?.required">Description is required.</span>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" formControlName="done">
+              <label class="form-check-label" for="done">Done</label>
+            </div>
+            <!-- [readonly]="NoVerFecha"  value= toDay [placeholder]="toDay | date:'dd-MM-yyyy'"
+              [value]="'2021-03-12' | date:'dd-MM-yyyy'"  -->
+            <div class="form-group" *ngIf="this.form.controls['createdDate'].value" >
+              <label > <strong>Fecha de Creación:</strong> </label>
+              <input type="datetime-local" formControlName="createdDate" [readonly]="NoVerFecha" style="margin-bottom: 10px;">
+            </div>
+            <div class="form-group" >
+              <label > <strong>Fecha de Actualización: </strong> </label>
+              <input type="datetime-local" placeholder="Insert a updated date" value= toDay formControlName="updatedDate" class="form-control" style="margin-bottom: 10px;">
+              <span style="color:red;" *ngIf="form.controls['updatedDate'].touched && form.controls['updatedDate'].errors?.required">updatedDate is required.</span>
+            </div>
+          </form>
+          <!-- </form> -->
+          <button (click)="AddEdit()" class="btn btn-primary" [disabled]="form.invalid" style="margin: 10px;"> Submit</button>
+          <button *ngIf="sel.id!==0" (click)="delete()" class="btn btn-danger"> Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="toolbar" role="banner">
+        <img
+          width="55"
+          alt="Angular Logo"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- type = "ball-scale-multiple" color = "#fff -->
+<ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "blue"
+  type = "ball-scale-ripple-multiple"   [fullScreen] = "true" [show]="loading" >
+  <div  class=" carga" style="width: 3rem; height: 3rem;" role="status"   >
+    <!-- <span class="sr-only">Loading...</span> -->
+  </div>
+  <br>
+  <br>
+  <br>
+  <p style="color: white" >Loading Form DB... </p></ngx-spinner>
+

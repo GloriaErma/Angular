@@ -1,0 +1,117 @@
+<section id="main-content">
+    <!-- GECS  segun diseñador Carlos Reyes 2-Dic-2020 -->
+    <!-- <app-header-inicio></app-header-inicio> -->
+    <app-header-logo></app-header-logo>
+    <div class="col-md-10 mx-auto mb-3">
+        <h2>Crear cuenta</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="page-inner mb-5">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <form [formGroup]="solicitudForm" method="POST">
+                                <!-- GECS recargar pagina, segun diseñador Carlos Reyes 2-Dic-2020 onclick="javascript:window.location.reload()" -->
+                                <div class="alert-wrong-govco alert alert-dismissible fade show" aria-label="Alerta: caso de error" *ngIf="mensajeError != ''">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar" title="Cerrar">×</button>
+                                    <div class="alert-heading">
+                                        <svg class="svg-inline--fa fa-times fa-w-11 icon-color-red fa-2x pr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+                                        <!-- <i class="fas fa-times icon-color-red fa-2x pr-2"></i> -->
+                                        <span class="headline-l-govco">Lo sentimos</span>
+                                    </div>
+                                    <div class="alert-content text-danger">
+                                        <div>
+                                            <div>{{mensajeError}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group row">
+                                    <div class="col-sm-6" >
+                                        <label for="cbTipoDocumento">Tipo de documento (*)</label>
+                                        <!-- <select (change)="onChange($event.target.value)" id="cbTipoDocumento" formControlName="tipoDocumento" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.tipoDocumento.errors}"> -->
+                                        <!-- <select  id="cbTipoDocumento" formControlName="tipoDocumento" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.tipoDocumento.errors}"> -->
+                                        <select (change)="onChange($event)" id="cbTipoDocumento" formControlName="tipoDocumento" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.tipoDocumento.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrTiposDocumento" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && solicitudForm.controls.tipoDocumento.errors && solicitudForm.controls.tipoDocumento.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtNumDocumento">Número de documento (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.numDocumento.errors}" id="txtNumDocumento" formControlName="numDocumento">
+                                        <div *ngIf="submitted && solicitudForm.controls.numDocumento.errors && solicitudForm.controls.numDocumento.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        <div *ngIf="submitted && solicitudForm.controls.numDocumento.errors && !solicitudForm.controls.numDocumento.errors.required" class="invalid-feedback">Formato no válido para tipo de Documento</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtPrimerNombre">Primer nombre (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.primerNombre.errors}" id="txtPrimerNombre" formControlName="primerNombre">
+                                        <div *ngIf="submitted && solicitudForm.controls.primerNombre.errors && solicitudForm.controls.primerNombre.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtSegundoNombre">Segundo nombre</label>
+                                        <input type="text" class="form-control input-govco" id="txtSegundoNombre" formControlName="segundoNombre">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtPrimerApellido">Primer Apellido (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.primerApellido.errors}" id="txtPrimerApellido" formControlName="primerApellido">
+                                        <div *ngIf="submitted && solicitudForm.controls.primerApellido.errors && solicitudForm.controls.primerApellido.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtSegundoApellido">Segundo Apellido</label>
+                                        <input type="text" class="form-control input-govco" id="txtSegundoApellido" formControlName="segundoApellido">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtFechaNacimiento">Fecha de Nacimiento (*)</label>
+                                        <input type="date" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.fechaNacimiento.errors}" id="txtFechaNacimiento" name="txtFechaNacimiento" formControlName="fechaNacimiento" (change)="CambioFecha()">
+                                        <div *ngIf="submitted && solicitudForm.controls.fechaNacimiento.errors && solicitudForm.controls.fechaNacimiento.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtFechaExpedicion">Fecha de expedición de documento (*)</label>
+                                        <input type="date" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.fechaExpedicion.errors}" id="txtFechaExpedicion" name="txtFechaExpedicion" formControlName="fechaExpedicion">
+                                        <div *ngIf="submitted && solicitudForm.controls.fechaExpedicion.errors && solicitudForm.controls.fechaExpedicion.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row" *ngIf="validaDatosBasicos">
+                                    <div class="col-sm-6">
+                                        <label for="txtEmail">Correo electrónico (*)</label>
+                                        <input type="email" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.email.errors}" id="txtEmail" formControlName="email">
+                                        <div *ngIf="submitted && solicitudForm.controls.email.errors && solicitudForm.controls.email.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        <div *ngIf="submitted && solicitudForm.controls.email.errors && solicitudForm.controls.email.errors.email" class="invalid-feedback">La información ingresada no es válida. Verifique los datos ingresados</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtConfirmaEmail">Confirmar Correo Electrónico (*)</label>
+                                        <input type="email" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false" autocomplete=off class="form-control input-govco" [ngClass]="{'is-invalid': submitted && solicitudForm.controls.confirmaEmail.errors}" id="txtConfirmaEmail"
+                                            formControlName="confirmaEmail">
+                                        <div *ngIf="submitted && solicitudForm.controls.confirmaEmail.errors && solicitudForm.controls.confirmaEmail.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        <div *ngIf="submitted && solicitudForm.controls.confirmaEmail.errors && solicitudForm.controls.confirmaEmail.errors.email" class="invalid-feedback">La información ingresada no es válida. Verifique los datos ingresados</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-danger">sin recarga</button>
+
+                                <div class="text-center my-5">
+                                    <button type="button" (click)="Volver()" class="btn btn-round btn-middle btn-outline-primary">Cancelar</button>
+
+                                    <button type="button" [disabled]="clicked" (click)="Validar();" class="btn btn-round btn-high">{{titleButton}}</button>
+                                </div>
+                                <div *ngIf="errorSolicitud" class="text-center text-danger my-5">
+                                    {{ mensajeError }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer-general></app-footer-general>

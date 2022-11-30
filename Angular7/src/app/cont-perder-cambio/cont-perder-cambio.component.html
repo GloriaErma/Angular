@@ -1,0 +1,13 @@
+<p>cont-perder-cambio works!</p>
+
+<div class="col-3 container-contacto">
+  <div class="form-group">
+    <label for="mensaje">Mensaje</label>
+    <!-- <textarea (input)="mensaje = $event.target.value"  NO FUNCIONA -->
+    <textarea [(ngModel)]="mensaje"
+      name="mensaje" id="mensaje" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+  <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+</div>
+
+

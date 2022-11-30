@@ -1,0 +1,82 @@
+<body class="bkg-login">
+    <app-header-inicio></app-header-inicio>
+    <div class="pt-5">
+        <div class="login-container">
+            <div class="row">
+                <div class="col-lg-12 centrado-login">
+                    <h1 class="nombre">ICETEX</h1>
+                    <img src="../../../assets/img/logo-icetex-blue.svg" alt="ICETEX" class="img-fluid d-block mx-auto">
+                    <br>
+                    <br>
+
+                    <form [formGroup]="reactiveForm" method="POST">
+                        <!-- GECS recargar pagina, segun diseñador Carlos Reyes 2-Dic-2020 -->
+                        <div class="alert-wrong-govco alert alert-dismissible fade show" aria-label="Alerta: caso de error" *ngIf="mensajeError != '' || (submitted && reactiveForm.controls.email.errors) || (submitted && reactiveForm.controls.pass.errors) || (submitted && reactiveForm.controls.recaptchaReactive.errors)">
+                            <button type="button" onclick="javascript:window.location.reload()" class="close" data-dismiss="alert" aria-label="Cerrar" title="Cerrar">x</button>
+                            <div class="alert-heading">
+                                <svg class="svg-inline--fa fa-times fa-w-11  icon-color-red fa-2x pr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+                                <!-- <i class="fas fa-times icon-color-red fa-2x pr-2"></i> -->
+                                <span class="headline-l-govco">Lo sentimos</span>
+                            </div>
+                            <div class="alert-content text-danger">
+                                <div *ngIf="submitted && reactiveForm.controls.email.errors">
+                                    <div *ngIf="reactiveForm.controls.email.errors.required">Campo Usuario obligatorio</div>
+                                    <div *ngIf="reactiveForm.controls.email.errors.email">Campo Usuario en formato no correcto</div>
+                                </div>
+                                <div *ngIf="submitted && reactiveForm.controls.pass.errors">
+                                    <div *ngIf="reactiveForm.controls.pass.errors.required">Campo Clave obligatorio</div>
+                                </div>
+                                <div *ngIf="submitted && reactiveForm.controls.recaptchaReactive.errors">
+                                    <div *ngIf="reactiveForm.controls.recaptchaReactive.errors.required">El recaptcha es obligatorio</div>
+                                </div>
+                                <div *ngIf="submitted && errorLogin && reactiveForm.valid">
+                                    <div *ngIf="errorLogin">{{mensajeError}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="icon-addon addon-lg">
+                                <input class="form-control input-govco" placeholder="Usuario" type="email" formControlName="email" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="icon-addon addon-lg">
+                                <input class="form-control input-govco" placeholder="Clave" type="password" formControlName="pass" maxlength="50">
+                            </div>
+                            <div class="float-right"> <a href="#" class="btn btn-low">Olvid&#xF3; su clave?</a>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <br>
+                            <div class="recaptcha" style="display: inline-block;">
+                                <re-captcha formControlName="recaptchaReactive"></re-captcha>
+                            </div><hr>
+
+                            <button type="submit" class="btn btn-round btn-high" (click)="login()">Ingresar</button> 
+
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <a href="#" class="btn btn-low">
+                                        Restablecer contraseña
+                                    </a>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <a href="#/PoliticasCondiciones" class="btn btn-low">
+                                        Crear una cuenta
+                                    </a>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <a href="#" class="btn btn-low">
+                                    Recuperar usuario
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer-general></app-footer-general>
+</body>

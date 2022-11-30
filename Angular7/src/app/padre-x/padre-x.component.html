@@ -1,0 +1,30 @@
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Padre con 2 hijos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">ViewChild-Pasar PadreX=>HijoX</li>
+  </ol>
+</nav>
+<p>padre-x works!</p>
+<h1>ViewChild utiliza Variable de Referencia de Plantilla</h1>
+
+Escribe algo:
+<input type="text" [(ngModel)]="texto">
+<span style= "color:red;">{{ mensajeError }}  </span>
+<!-- <br>
+<button (click)="enviarMsg()  ">Enviar</button> -->
+
+<!-- <app-hijo-x #hijo></app-hijo-x> -->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<hr width=70% size=20  color="#FF0000" noshade="noshade" align="left" >
+<h1>ViewChild utiliza TIPO de Componente</h1>
+
+Escribe algo:
+<input type="text" [(ngModel)]="texto">
+<span style= "color:red;">{{ mensajeError }}  </span>
+<br>
+<button (click)="enviarMsgC()  ">Enviar</button>
+
+<app-hijo-x ></app-hijo-x>

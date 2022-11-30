@@ -1,0 +1,135 @@
+<p>grilla works!</p>
+<!-- /* import styles to  ag-grid de grilla  ascii alt 126--3.Ag_grid GECS */   // | async"-->
+
+<ag-grid-angular
+  style="width: 500px; height: 500px;"
+  class="ag-theme-alpine"
+  [rowData]="rowData | async"
+  [columnDefs]="columnDefs"
+  [singleClickEdit]="true"
+  (CellValueChanged)="onCellValueChanged()"
+
+>
+</ag-grid-angular>
+
+<div class="container">
+  <ng-container  *ngIf=" array">
+    <h3>Lista arrays los registros </h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>POS   </th>
+          <th>ID-REGISTRO</th>
+          <th>TITLE</th>
+          <th>DESCRIPTION</th>
+          <th>DONE</th>
+          <th>CREATE-DATE</th>
+          <th>UPDATED-DATE</th>
+          <th>PRIMER-REGISTRO</th>
+          <th>ULTIMO-REGISTRO </th>
+        </tr>
+      </thead>
+      <ng-container  *ngIf="array">
+        <Tbody>
+          <tr *ngFor="let item of array ;let i=index;
+          let primero = first; let ultimo = last; let impar = odd; let par = even"
+          [ngClass]="{'Class-Par':par, 'Class-Impar':impar }">
+            <td> {{i+1}} </td>
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.done}}</td>
+            <td>{{item.createdDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.updatedDate | date:'dd-MM-yyyy'}}</td>
+            <td> {{ primero }} </td>
+            <td> {{ ultimo }} </td>
+          </tr>
+        </Tbody>
+      </ng-container>
+    </table>
+  </ng-container>
+</div>
+
+
+
+
+
+
+
+<div class="card mt-4">
+  <div class="card-body">
+    <div class="card-title">
+      <strong>Insert a new Record</strong>
+    </div>
+    <!-- directiva ngModel  > -->
+    <!-- <table class="table"> -->
+
+      <form [formGroup]="form" >
+        <div class="form-group" >
+          <input type="text" #name (keyup)="0" placeholder="Insert a title" name="title" formControlName="title" style="margin-bottom: 10px;" >
+                  {{name.value}}
+          <span style="color:red;" *ngIf="form.controls['title'].touched && form.controls['title'].errors?.required">Title is required.</span>
+        </div>
+        <div class="form-group">
+          <label > <strong>Descripción:</strong> </label>
+          <input type="textarea" placeholder="Insert a descripcion" class="form-control" formControlName="descripcion" style="margin-bottom: 10px;" >
+          <span style="color:red;" *ngIf="form.controls['descripcion'].touched && form.controls['descripcion'].errors?.required">Description is required.</span>
+        </div>
+        <div class="form-group">
+          <label > <strong>Estado Registro:</strong> </label>
+          <input type="checkbox" class="form-check-input" formControlName="done">
+          <label class="form-check-label" for="done">Done</label>
+        </div>
+        <!-- [readonly]="NoVerFecha"  value= toDay [placeholder]="toDay | date:'dd-MM-yyyy'"
+          [value]="'2021-03-12' | date:'dd-MM-yyyy'"  -->
+        <div class="form-group" *ngIf="this.form.controls['createdDate'].value" >
+          <label > <strong>Fecha de Creación:</strong> </label>
+          <input type="datetime-local" formControlName="createdDate" [readonly]="NoVerFecha" style="margin-bottom: 10px;">
+        </div>
+        <div class="form-group" >
+          <label > <strong>Fecha de Actualización: </strong> </label>
+          <input type="datetime-local" placeholder="Insert a updated date" value= toDay formControlName="updatedDate" class="form-control" style="margin-bottom: 10px;">
+          <span style="color:red;" *ngIf="form.controls['updatedDate'].touched && form.controls['updatedDate'].errors?.required">updatedDate is required.</span>
+        </div>
+      </form>
+    <!-- </table> -->
+    <!-- </form> -->
+    <button (click)="AddEdit()" class="btn btn-primary" [disabled]="form.invalid" style="margin: 10px;"> Submit</button>
+    <button *ngIf="sel.id!==0" (click)="delete()" class="btn btn-danger"> Delete</button>
+  </div>
+</div>
+
+
+
+
+<!-- Entonces, por ejemplo, si onCellValueChangedconvierte el valor de cadena
+proporcionado en un número, entonces newValuepara ValueSettertendrá
+la cadena y newValuepara onCellValueChangedtendrá el número. -->
+<!--inicio tabla-->
+<p>inicio tabla works!</p>
+<div class="container">
+  <app-header-generic class="header"></app-header-generic>
+  <div class="row">
+      <div class="col-lg-12  form py-5">
+          <div class="card mt-3 tab-card">
+              <div class="card-header tab-card-header">
+                  <h2>Cotización</h2>
+              </div>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+  <h5 class="card-title"></h5>
+  <div class="card-body">
+      <div class="row">
+        <!--inicio tabla-->>>>>>
+
+        <!--fin tabla-->
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+

@@ -1,0 +1,25 @@
+
+<!-- Aquí termina el código del menú -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Padre con 2 hijos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Hijo1->Padre->Hijo2</li>
+  </ol>
+</nav>
+<p>padre works!</p>
+<h1>Comunicacion entre componentes hermanos</h1>
+
+<app-hijo1 (textoCambiado)= "textoHijo1 = $event" ></app-hijo1>
+<app-hijo2  [textoHijo2]="textoHijo1"  ></app-hijo2>
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<hr width=70% size=20  color="#FF0000" noshade="noshade" align="left" >
+<h1>Comunicacion Padre, entre hijos y nietos</h1>
+
+<b>Esto es lo escrito en el texbox:</b> <br>
+<div style= "white-space:pre-wrap;"> {{ service.mensaje }} </div>
+
+<div style = "display: flex; flex-direction: row; justify-content: space-evenly; color: blue; background-color: chartreuse;">
+  <app-hijo1></app-hijo1>
+  <app-hijo2></app-hijo2>
+</div>

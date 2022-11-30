@@ -1,0 +1,35 @@
+<p> get-demo works!</p>
+<b> Data Fuente:  apiJasonPlace: 'https://jsonplaceholder.typicode.com/' </b>
+<br>
+Put the user ID:
+
+<input type="text" #textId placeholder="number" step="1" min="0" max="100000" value="0" name="ed" required >
+<button (click)="getUser(textId.value)">Get user</button>
+<hr>
+<ng-container *ngIf="notFound">User not Found</ng-container>
+<ng-container *ngIf="user">
+  <div>UserId: {{user.userId}}  </div>
+  <div>Id: {{user.id}}  </div>
+  <div>Name: {{user.title }}  </div>
+  <div>Username: {{user.body}}  </div>
+</ng-container>
+
+<div *ngIf="notFound" [ngStyle]="{'background-color': notFound ? 'red':'green'} "  >User not Found</div>
+<div *ngIf="!user" [ngStyle]="{'background-color': !user ? 'brown':'blue',
+                              'textAlign': 'right',
+                             'color': !user ? 'yellow': 'gray',
+                             'paddingLeft': user ? '0px': '20px',
+                             'paddingRight': !user ? '20px' :'0px',
+                             'width': '400px' ,
+                             'height' : '40px'} ">
+  NO existe por ahora!!!
+</div>
+<div *ngIf="user" [ngStyle]="{'background-color': !user ? 'green':'blue',
+                              'textAlign': 'right',
+                             'color': !user ? 'yellow': 'gray',
+                             'paddingLeft': !user ? '0px': '20px',
+                             'paddingRight': !user ? '20px' :'0px',
+                             'width': '450px' ,
+                             'height' : '50px'} ">
+  OK- Transacción Exitosa!!!
+</div>

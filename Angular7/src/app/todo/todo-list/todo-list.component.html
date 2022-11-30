@@ -1,0 +1,85 @@
+<p>todo-list works!</p>
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-itema active" aria-current="page"><a href="#">Home</a></li>
+    <!-- <li class="breadcrumb-item"><a href="#">Contacto</a></li> -->
+    <!-- <li class="breadcrumb-item active" aria-current="page">Sección actual</li> -->
+  </ol>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" (click)="clickAddTodo()">>>Mostrar Modal BOOTSTRAP</button>
+      <!-- ///////////////////////////////////////////////////////////////////// -->
+      <hr width=100% size=20 noshade="noshade" align="left"  style="color: blueviolet;">
+      <h3>CARGAR ARCHIVO</h3>
+      <h3>Variable de Referencia de Plantilla </h3>
+      <input type="file" style="display:none;" #uploader>
+
+      <button (click)="uploader.click()">Cargar Archivo</button>
+
+    </div>
+    <div class="col" >
+      <div>
+        <h3>ngModel </h3>
+        <input type="text" [(ngModel)]="texto"/>
+        <strong>{{texto}}   </strong>
+      </div>
+      <div>
+        <select [(ngModel)]="opcion" class="form-select" multiple aria-label="multiple select example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <div [ngSwitch]= "opcion" >
+          <div *ngSwitchDefault> Por favor seleccione opcion</div>
+          <div *ngSwitchCase= "'1'"> Gracias seleccionó opcion 1 </div>
+          <div *ngSwitchCase= "'2'"> Gracias seleccionó opcion 2 </div>
+          <div *ngSwitchCase= "'3'"> Gracias seleccionó opcion 3 </div>
+          <!-- <div *ngSwitchCase= "1 && 2 "> Gracias seleccionó Multiples </div> -->
+          <tr *ngFor="let i of opcion ;let r=index;
+          let primero = first; let ultimo = last; let impar = odd; let par = even"
+          [ngClass]="{'Class-Par':par, 'class-Impar':impar }" > Gracias seleccionó la opcion::
+            <td > {{i}} </td>
+          </tr>
+
+        </div>
+      </div>
+    </div>
+    <div class="col"  >
+      <!-- <button class="btn btn-primary" (click)="VerFormTodo()">Ver Formulario </button> -->
+      <a href="/FormTodo" class="btn btn-low" style="text-align:left; color:blueviolet" >
+        <h3> * Ir al Formulario Lista Registros API </h3>
+      </a>
+    </div>
+    <div class="col"  >
+      <a href="/FormUno" class="btn btn-low" style="text-align:left; color:blueviolet"  >
+        <h3> ** Ir al Formulario Registro Particular API</h3>
+      </a>
+      <button class="btn btn-primary" (click)="VerModUno()">>>Consultar Registro Particular</button>
+      <button class="btn btn-primary" (click)="CreaModUno()">>>Crear Registro Particular</button>
+      <br>
+      <strong>Navegación RUTAS:  </strong>
+      <button (click)="irAPatch()"> http-patch-demo </button>
+
+
+    </div>
+    <div class="col">
+      <strong>Quinta de 5 columnas</strong>
+      <app-get-demo></app-get-demo>
+    </div>
+  </div>
+</div>
+<!-- type = "ball-scale-multiple" color = "#fff -->
+<!-- <ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "blue"
+  type = "ball-scale-ripple-multiple"   [fullScreen] = "true" [show]="loading" >
+  <!-- <div  class=" carga" style="width: 3rem; height: 3rem;" role="status"   >
+    <span class="sr-only">Loading...</span>
+  </div> -->
+  <!-- <br>
+  <p style="color: white" >Loading ... </p></ngx-spinner> --> -->
+
+

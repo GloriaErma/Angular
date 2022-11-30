@@ -1,0 +1,31 @@
+<p>usuarios works!   GECS tiene otro router-outlet</p>
+<app-menu-secundario></app-menu-secundario>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+<!-- router-outlet es una etiqueta especial en Angular
+  que sirve para mostrar los componentes hijos de un componente. -->
+<div class="bottomright">
+  <!-- <router-outlet name="RouterOutletUsuarios"></router-outlet>  para cerrar bien-->
+  <router-outlet name="popup"></router-outlet>
+</div>
+
+<!-- <ng-container *ngIf="usuarios">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>UserName</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of usuarios">
+        <td><button class="btn btn-primary" (click)="verPosts(e.id)">Ver POSTS </button> </td>
+        <td>{{e.name}}  </td>
+        <td>{{e.username}} </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container> -->
+

@@ -1,0 +1,262 @@
+<section id="main-content">
+    <app-header-inicio></app-header-inicio>
+    <div class="col-md-10 mx-auto mb-3">
+        <br />
+        <h2>Activar cuenta</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="page-inner mb-5">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <form [formGroup]="activarForm" method="POST">
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="cbTipoDocumento">Tipo de documento</label>
+                                        <select id="cbTipoDocumento" formControlName="tipoDocumento" class="form-control input-govco" ng-disabled="disabled" >
+                                        <option value="">Seleccione uno</option>
+                                       <option *ngFor="let item of arrTiposDocumento" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtNumDocumento">Número de documento</label>
+                                        <!--disabled GECS  -->
+                                        <input type="text" class="form-control input-govco"  id="txtNumDocumento" formControlName="numDocumento" ng-disabled="disabled"  >  disabled
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtPrimerNombre">Primer nombre </label>
+                                        <input type="text" class="form-control input-govco" ng-disabled="disabled"   id="txtPrimerNombre" formControlName="primerNombre">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtSegundoNombre">Segundo nombre</label>
+                                        <input type="text" class="form-control input-govco" id="txtSegundoNombre" formControlName="segundoNombre">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtPrimerApellido">Primer Apellido</label>
+                                        <input type="text" class="form-control input-govco" ng-disabled="disabled"   id="txtPrimerApellido" formControlName="primerApellido">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtSegundoApellido">Segundo Apellido</label>
+                                        <input type="text" class="form-control input-govco" id="txtSegundoApellido" formControlName="segundoApellido">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtFechaNacimiento">Fecha de Nacimiento </label>
+                                        <input type="date" class="form-control input-govco" ng-disabled="disabled"   id="txtFechaNacimiento" name="txtFechaNacimiento" formControlName="fechaNacimiento">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="txtFechaExpedicion">Fecha de expedición de documento</label>
+                                        <input type="date" class="form-control input-govco" ng-disabled="disabled"   id="txtFechaExpedicion" name="txtFechaExpedicion" formControlName="fechaExpedicion">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtcontrasena">Correo electrónico </label>
+                                        <input type="email" class="form-control input-govco" ng-disabled="disabled"   id="txtEmail" formControlName="email">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" formControlName="autorizaEnvio" [ngClass]="{'is-invalid': submitted && activarForm.controls.autorizaEnvio.errors}" id="autorizaEnvioCheck">
+                                            <label class="form-check-label" for="eautorizaEnvioCheck">Autoriza envio información por correo electrónico o celular (*)</label>
+                                            <div *ngIf="submitted && activarForm.controls.autorizaEnvio.errors && activarForm.controls.autorizaEnvio.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="cbGenero">Género (*)</label>
+                                        <select id="cbGenero" formControlName="genero" placeholder="Seleccione uno" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.genero.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrGenero" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.genero.errors && activarForm.controls.genero.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="cbgrupoEtnico">Grupo Étnico (*)</label>
+                                        <select id="cbgrupoEtnico" formControlName="grupoEtnico" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.grupoEtnico.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrGrupoEtnico" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.grupoEtnico.errors && activarForm.controls.grupoEtnico.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="cbestrato">Estrato (*)</label>
+                                        <select id="cbestrato" formControlName="estrato" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.estrato.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrEstrato" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.estrato.errors && activarForm.controls.estrato.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="cbpaisNac">País Nacionalidad (*)</label>
+                                        <select (change)!="PaisNoColombiaNac($event.target.value)" id="cbpaisNac" formControlName="paisNac" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.paisNac.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrPais" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.paisNac.errors && activarForm.controls.paisNac.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div id="divLugarNac" style="display: none" class="col-sm-6">
+                                        <label for="txtlugar">Lugar de Nacionalidad (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.lugarNac.errors}" id="lugarNac" name="lugarNac" formControlName="lugarNac" placeholder="lugar Nacionalidad">
+                                        <div *ngIf="submitted && activarForm.controls.lugarNac.errors && activarForm.controls.lugarNac.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div id="divDepNac" style="display: none" class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="cbdepartamentoNac">Departamento Nacionalidad (*)</label>
+                                        <select (change)!="onChange($event.target.value )" id="cbdepartamentoNac" formControlName="departamentoNac" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.departamentoNac.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrDepartamento" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.departamentoNac.errors && activarForm.controls.departamentoNac.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="cbciudadNac">Ciudad Nacionalidad (*)</label>
+                                        <select id="cbciudadNac" formControlName="ciudadNac" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.ciudadNac.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrCiudad" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.ciudadNac.errors && activarForm.controls.ciudadNac.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="txtdireccion">Dirección Residencia (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.direccion.errors}" id="txtdireccion" name="txtdireccion" formControlName="direccion" placeholder="Dirección Residencia">
+                                        <div *ngIf="submitted && activarForm.controls.direccion.errors && activarForm.controls.direccion.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="cbpaisRes">País Residencia (*)</label>
+                                        <select (change)!="PaisNoColombiaRes($event.target.value)" id="cbpaisRes" formControlName="paisRes" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.paisRes.errors}">
+                                        <option value="">Seleccione uno</option>
+                                        <option *ngFor="let item of arrPais" [value]="item.id">
+                                            {{ item.valor }}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="submitted && activarForm.controls.paisRes.errors && activarForm.controls.paisRes.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div id="divLugarRes" style="display: none" class="col-sm-6">
+                                        <label for="txtlugar">Lugar de Residencia (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.lugarRes.errors}" id="lugarRes" name="lugarRes" formControlName="lugarRes" placeholder="lugar Residencia">
+                                        <div *ngIf="submitted && activarForm.controls.lugarRes.errors && activarForm.controls.lugarRes.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div id="divDepRes" style="display: none" class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="cbdepartamentoRes">Departamento Residencia (*)</label>
+                                        <select (change)!="onChangeRes($event.target.value)" id="cbdepartamentoRes" formControlName="departamentoRes" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.departamentoRes.errors}">
+                                            <option value="">Seleccione uno</option>
+                                            <option *ngFor="let item of arrDepartamento" [value]="item.id">
+                                                {{ item.valor }}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && activarForm.controls.departamentoRes.errors && activarForm.controls.departamentoRes.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="cbciudadRes">Ciudad Residencia (*)</label>
+                                        <select id="cbciudadRes" formControlName="ciudadRes" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.ciudadRes.errors}">
+                                            <option value="">Primero seleccione Departamento</option>
+                                            <option *ngFor="let item of arrCiudadRes" [value]="item.id">
+                                                {{ item.valor }}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && activarForm.controls.ciudadRes.errors && activarForm.controls.ciudadRes.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="radiolist-govco radiobutton-govco">
+                                    <input type="radio" value="rural"  id="rural" name="ruralUrbano" formControlName="ruralUrbano" >
+                                    <label for="rural"> Rural </label>
+                                    </label>
+                                    <label class="radiolist-govco radiobutton-govco">
+                                    <input type="radio" value="urbano" id="urbano" name="ruralUrbano" formControlName="ruralUrbano" >
+                                    <label for="urbano"> Urbano (*) </label>
+                                    </label>
+                                    <div *ngIf="submitted && activarForm.controls.ruralUrbano.errors && activarForm.controls.ruralUrbano.errors.required" class="invalid-radio">Campo obligatorio</div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="telefonoFijo">Teléfono Fijo </label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.telefonoFijo.errors}" id="telefonoFijo" name="telefonoFijo" formControlName="telefonoFijo" placeholder="Teléfono Fijo">
+                                        <div *ngIf="submitted && activarForm.controls.telefonoFijo.errors && activarForm.controls.telefonoFijo.errors.pattern" class="invalid-feedback">Telefono Fijo invalido, debe ser numérico</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="telefonoCelular">Teléfono Celular (*)</label>
+                                        <input type="text" class="form-control input-govco" [ngClass]="{'is-invalid': submitted && activarForm.controls.telefonoCelular.errors}" id="telefonoCelular" name="telefonoCelular" formControlName="telefonoCelular" placeholder="Teléfono Celular">
+                                        <div *ngIf="submitted && activarForm.controls.telefonoCelular.errors && activarForm.controls.telefonoCelular.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        <div *ngIf="activarForm.controls.telefonoCelular.errors && (activarForm.controls.telefonoCelular.dirty || activarForm.controls.telefonoCelular.touched)" class="invalid-feedback">
+                                            <div *ngIf="activarForm.controls.telefonoCelular.errors.minlength">
+                                                telefonoCelular debe tener mínimo 8 caracteres.
+                                            </div>
+                                            <div *ngIf="activarForm.controls.telefonoCelular.errors.pattern ">
+
+                                                <p>Telefono Celular invalido, debe ser numérico</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="contrasena">Contraseña (*)</label>
+                                        <input type="password" class="form-control input-govco" [ngClass]="{'is-invalid': (submitted && activarForm.controls.contrasena.errors) || contrasenaNoCoincide}" id="contrasena" name="contrasena" formControlName="contrasena" placeholder="Contraseña">
+                                        <div *ngIf="submitted && activarForm.controls.contrasena.errors && activarForm.controls.contrasena.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        <div *ngIf="submitted && activarForm.controls.contrasena.errors && activarForm.controls.contrasena.errors.minlength" class="invalid-feedback">Contrasena debe tener mínimo 8 caracteres</div>
+                                        <div *ngIf="submitted && activarForm.controls.contrasena.errors && activarForm.controls.contrasena.errors.pattern" class="invalid-feedback">Contraseña invalida, Ver Validaciones para ingreso de contraseña</div>
+                                        <div *ngIf="contrasenaNoCoincide" class="invalid-feedback">Los campos de contraseña NO coinciden</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="confirmacontrasena">Confirmar contraseña (*)</label>
+                                        <input type="password" class="form-control input-govco" id="confirmacontrasena" [ngClass]="{'is-invalid': submitted && activarForm.controls.confirmacontrasena.errors}" formControlName="confirmacontrasena" placeholder="Confirma contraseña">
+                                        <div *ngIf="submitted && activarForm.controls.confirmacontrasena.errors && activarForm.controls.confirmacontrasena.errors.required" class="invalid-feedback">Campo obligatorio</div>
+                                        <div *ngIf="submitted && activarForm.controls.confirmacontrasena.errors && activarForm.controls.confirmacontrasena.errors.minlength" class="invalid-feedback">Confirmar contrasena debe tener mínimo 8 caracteres</div>
+                                        <div *ngIf="submitted && activarForm.controls.confirmacontrasena.errors && activarForm.controls.confirmacontrasena.errors.pattern" class="invalid-feedback">Contraseña invalida, Ver Validaciones para ingreso de contraseña</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <a (click)="VerValidaciones()" class="btn btn-low" id="txtcontrasena">
+                                    Ver Validaciones para ingreso de contraseña
+                                </a>
+                                </div>
+                                <div class="text-center my-5">
+                                    <button type="button" (click)="Volver()" class="btn btn-round btn-middle btn-outline-primary">Cancelar</button>
+                                    <button type="button" [disabled]="clicked" (click)="Validar();" class="btn btn-round btn-high">Crear cuenta de usuario</button>
+                                </div>
+                                <div *ngIf="errorActivar" class="text-center text-danger my-5">
+                                    {{ mensajeError }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer-general></app-footer-general>

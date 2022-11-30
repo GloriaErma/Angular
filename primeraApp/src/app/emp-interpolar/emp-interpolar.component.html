@@ -1,0 +1,51 @@
+<p>emp-interpolar works!</p>
+
+<p> <b>NOMBRE EMPLEADO: </b> {{nombre}}  </p>
+
+<p><b>NOMBRE APELLIDO: </b> {{apellido}}  </p>
+
+<p><b>EDAD: </b>{{getEdad()+10}}  </p>
+<!-- Operador ternario:     condición "?" vr.verdadera ":" vr.falso -->
+<p><b>ES MAYOR DE EDAD???:</b>{{getEdad()<18 ? "Menor de edad": getEdad()+10}}</p>
+
+<!-- Operador ternario:     condición "?" vr.verdadera ":" vr.falso -->
+<!-- #edad, ref-edad serían declaraciones válidas -->
+<label>Ingrese EDAD:
+  <input type="number" #phone placeholder="number" step="1" min="0" max="100" value="0" name="ed" required />
+ <button (click)="callPhone(phone.value)">ADD</button>
+  <p><b>Msg EDAD:</b>{{callPhone(phone.value)<18 ? "Menor de edad": "Mayor de edad" }}</p>
+  <p>Nueva Edad:  {{callPhone(phone.value)}} </p>
+</label>
+<!-- como arreglo -->
+<div (keyup)="0">
+  <h4>Template context: template reference variables (#customerInput):</h4>
+  <label>Type something:
+    <input #customerInput>{{customerInput.value}}
+    <p><b>TYPE :</b>{{ leer(customerInput.value)<18 ? "Menor de edad": "Mayor de edad" }}</p>
+  </label>
+</div>
+<!-- <p><b>INGRESO MAYOR DE EDAD:</b>{{ Number(ed.value) < 18 ? "Menor de edad ": "Mayor de edad"}}</p> -->
+<label>Ingrese Nombre:
+  <input type="text" #NombreInp placeholder="ingrese nombre" />
+</label>
+<p>>>  {{NombreInp.value}} </p>
+<p><b>NOMBRE EMPRESA: </b> {{empresa}}  </p>
+<!-- Interpolación video 8 bautiza el input con "#".Elemento:cuadro texto,boton,bloque div,menu desplegable-->
+<p><label><b> ******Solución profesor 1: bautizo campo, muestro valor, evento boton ********************</b></label></p>
+<p><b>NOMBRE EMPRESA 1 para Add: </b> {{empresaAdd.value}}  </p>
+>>>Ingrese empresa: <<< <input type="text" #empresaAdd>
+<br/> <br/>
+<input type="button" value="DALE!!" (click)="Add(empresaAdd.value)  " />
+<!-- Interpolación video 8 bautiza el input con "#".Elemento:cuadro texto,boton,bloque div,menu desplegable-->
+<!-- PROPERTY BINDING: disable:false/true-->
+<p><label><b> ******Solución profesor 2: bautizo campo, muestro valor, evento Keyup tecla pulsada </b></label></p>
+<p><b>NOMBRE EMPRESA  2 para Add: </b> {{empresaAdd2.value}}  </p>
+>>>Ingrese empresa:  <input type="text" #empresaAdd2 (keyup)="0" disabled >
+
+<p>>>>Ingrese empresa propiedad propia:  <input type="text" #empresaAdd3 (keyup)="0" [disabled]="HabilCuadro" >
+  {{empresaAdd3.value}}</p>>
+<br/> <br/>
+Registrado: <input type="checkbox" id="registro" [checked]="usuRegistrado" >
+{{getRegistroUsu()}}
+
+

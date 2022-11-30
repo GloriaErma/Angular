@@ -1,0 +1,30 @@
+<p>usuarios-listado works!</p>
+
+<ng-container *ngIf="usuarios">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>UserName</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of usuarios">
+        <td><button class="btn btn-primary" (click)="verPosts(e.id)">Ver POSTS </button> </td>
+        <td>{{e.name}}  </td>
+        <td>{{e.username}} </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<!-- type = "ball-scale-multiple" color = "#fff -->
+<ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "blue"
+  type = "ball-scale-ripple-multiple"   [fullScreen] = "true" [show]="loading" >
+  <div  class=" carga" style="width: 3rem; height: 3rem;" role="status"   >
+    <!-- <span class="sr-only">Loading...</span> -->
+  </div>
+  <br>
+  <br>
+  <br>
+  <p style="color: white" >Loading  Listado Usuarios... </p></ngx-spinner>

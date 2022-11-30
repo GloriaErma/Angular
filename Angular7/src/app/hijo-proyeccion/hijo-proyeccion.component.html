@@ -1,0 +1,14 @@
+<p>hijo-proyeccion works!</p>
+
+<div style="border-color: rgb(161, 65, 225); border: 6px solid">
+  <ng-content>  </ng-content>
+</div>
+
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<hr width=100% size=20  color="#FF0000" noshade="noshade" align="left" >
+
+<ng-content select="[cabecera]"></ng-content>
+<hr>
+<ng-content select="[cuerpo]"></ng-content>
+<hr>
+<ng-content select="[pie]"></ng-content>
